@@ -41,7 +41,11 @@ for (const album of albums) {
     // Placeholder is $$album.title$$ etc.
     for (const key in album) {
         if (Object.hasOwnProperty.call(album, key)) {
-            albumHtml = albumHtml.replaceAll(`{{album.${key}}}`, album[key]);
+            let data = album[key];
+            if (key === "coverUrl") {
+                data = `..${data}`;
+            }
+            albumHtml = albumHtml.replaceAll(`{{album.${key}}}`, data);
         }
     }
 

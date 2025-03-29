@@ -5,12 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Redirecting to Homepage</title>
         <!-- HTML redirect -->
-        <meta http-equiv="refresh" content="0;url=/" />
+        <meta http-equiv="refresh" content="0;url=." />
         <script>
             // JavaScript redirect
             window.onload = function () {
                 setTimeout(function () {
-                    window.location.href = "/";
+                    window.location.href = ".";
                 }, 1000);
             };
         </script>
@@ -18,6 +18,6 @@
     <body>
         <h1>Redirecting to Homepage</h1>
         <p>You are being redirected to the homepage.</p>
-        <p>If you are not redirected automatically, <a href="/">click here</a> to go to the homepage.</p>
+        <p>If you are not redirected automatically, <a href=".">click here</a> to go to the homepage.</p>
     </body>
 </html>

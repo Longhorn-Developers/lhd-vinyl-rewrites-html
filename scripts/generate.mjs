@@ -3,17 +3,17 @@
  * replacing the placeholders in the template file with the album data.
  */
 
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-import { albums } from "./albums.mjs";
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { albums } from './albums.mjs';
 
 // Get the current directory
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Get the path to the albums directory
-const albumsDir = path.join(__dirname, "..", "albums");
+const albumsDir = path.join(__dirname, '..', 'albums');
 
 // Ensure the albums directory exists
 if (!fs.existsSync(albumsDir)) {
@@ -21,12 +21,12 @@ if (!fs.existsSync(albumsDir)) {
 }
 
 // Read the template file
-const templatePath = path.join(albumsDir, "template.html");
+const templatePath = path.join(albumsDir, 'template.html');
 // Ensure the template file exists
 if (!fs.existsSync(templatePath)) {
     throw new Error(`Template file does not exist: ${templatePath}`);
 }
-const template = fs.readFileSync(templatePath, "utf8");
+const template = fs.readFileSync(templatePath, 'utf8');
 
 for (const album of albums) {
     // Create a directory for each album
@@ -42,7 +42,7 @@ for (const album of albums) {
     for (const key in album) {
         if (Object.hasOwnProperty.call(album, key)) {
             let data = album[key];
-            if (key === "coverUrl") {
+            if (key === 'coverUrl') {
                 data = `../..${data}`;
             }
             albumHtml = albumHtml.replaceAll(`{{album.${key}}}`, data);
@@ -50,6 +50,6 @@ for (const album of albums) {
     }
 
     // Write the html file
-    const htmlPath = path.join(albumDir, "index.html");
+    const htmlPath = path.join(albumDir, 'index.html');
     fs.writeFileSync(htmlPath, albumHtml);
 }

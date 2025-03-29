@@ -1,8 +1,8 @@
-import { albumsById } from "./albums.mjs";
+import { albumsById } from './albums.mjs';
 
-const searchBox = document.querySelector(".search-input");
-const clearButton = document.querySelector(".clear-button");
-const albumGrid = document.querySelector(".album-grid");
+const searchBox = document.querySelector('.search-input');
+const clearButton = document.querySelector('.clear-button');
+const albumGrid = document.querySelector('.album-grid');
 
 /**
  * @param {import("./albums.mjs").Album} album - The album object to check.
@@ -18,7 +18,7 @@ function matchesSearchText(album, searchText) {
  */
 function resetAlbumGrid() {
     for (const album of albumGrid.children) {
-        album.classList.remove("hidden");
+        album.classList.remove('hidden');
     }
 }
 
@@ -32,14 +32,14 @@ function filterAlbumGrid(searchText) {
         const albumData = albumsById.get(albumId);
         if (!albumData) {
             console.error(`Album data not found for ID: ${albumId}`);
-            album.classList.add("hidden");
+            album.classList.add('hidden');
             continue;
         }
 
         if (matchesSearchText(albumData, searchText)) {
-            album.classList.remove("hidden");
+            album.classList.remove('hidden');
         } else {
-            album.classList.add("hidden");
+            album.classList.add('hidden');
         }
     }
 }
@@ -47,14 +47,14 @@ function filterAlbumGrid(searchText) {
 /**
  * Handles searching, filtering the results of the album grid.
  */
-searchBox.addEventListener("input", function (e) {
-    const searchText = e.target.value.toLowerCase().trim().replace(/\s+/g, " ");
+searchBox.addEventListener('input', function (e) {
+    const searchText = e.target.value.toLowerCase().trim().replace(/\s+/g, ' ');
 
     if (searchText.length > 0) {
-        clearButton.classList.remove("hidden");
+        clearButton.classList.remove('hidden');
         filterAlbumGrid(searchText);
     } else {
-        clearButton.classList.add("hidden");
+        clearButton.classList.add('hidden');
         resetAlbumGrid();
     }
 });
@@ -62,8 +62,8 @@ searchBox.addEventListener("input", function (e) {
 /**
  * Handles clicks on the clear button.
  */
-clearButton.addEventListener("click", function () {
-    searchBox.value = "";
-    clearButton.classList.add("hidden");
+clearButton.addEventListener('click', function () {
+    searchBox.value = '';
+    clearButton.classList.add('hidden');
     resetAlbumGrid();
 });
